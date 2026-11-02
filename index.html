@@ -539,7 +539,7 @@ function sha256(str){
   return h.map(x=>x.toString(16).padStart(8,'0')).join('')}
 function adminRec(){try{return JSON.parse(localStorage.getItem(ADMIN_KEY)||'null')}catch(e){return null}}
 const adminHash=(pw,salt)=>sha256(salt+'|'+pw);
-function adminCheck(pw){const r=adminRec();if(!r||!r.h)return String(pw)==='0';return adminHash(String(pw),r.s)===r.h}
+function adminCheck(pw){const r=adminRec();if(!r||!r.h)return String(pw)==='8910';return adminHash(String(pw),r.s)===r.h}
 function adminSetPw(pw){const salt=uid()+Math.random().toString(36).slice(2);localStorage.setItem(ADMIN_KEY,JSON.stringify({s:salt,h:adminHash(pw,salt)}))}
 let adminOK=false;
 function adminLogin(){const v=$('#adPw')?$('#adPw').value:'';if(!adminCheck(v))return toast('Wrong admin password',1);adminOK=true;adminPanel()}
